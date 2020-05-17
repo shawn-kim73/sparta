@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>basic :: jQuery effect</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<style>
+body {
+	margin: 20px;
+	padding: 20px;
+	line-height: 1;
+	font-family: "Open Sans", sans-serif;
+	font-size: 1em;
+	background-color: #555;
+	color: #000;
+}
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+button {
+	padding: 5px 15px;
+	background-color: #666;
+	color: #000;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+button:hover {
+	background-color: #888;
+}
+.title {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+.container {
+	position: relative;
+	left: 0;
+	top: 0;
+	margin-top: 35px;
+	width: 600px;
+	height: 200px;
+	overflow: hidden;
+}
+.gallery {
+	position: absolute;
+	z-index: 1;
+	left: -600px;
+	top: 40px;
+	width: 600px;
+	height: 200px;
+	list-style: none;
+	-webkit-transition: left 0.5s ease-out;
+	transition: left 0.5s ease-out;
+}
+.gallery li {
+	float: left;
+	width: 200px;
+	height: 200px;
+	opacity: 0.4;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+.gallery li img {
+	width: 200px;
+}
+.gallery.active {
+	left: 0;
+}
+.gallery li.over {
+	opacity: 1;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script>
+</script>
+</head>
+
+<body>
+<h1 class="title">basic :: jQuery effect</h1>
+<div class="container">
+	<button id="tab">gallery open</button>
+	<ul class="gallery">
+		<li><img src="images/slide1.jpg" alt="image1"></li>
+		<li><img src="images/slide2.jpg" alt="image2"></li>
+		<li><img src="images/slide3.jpg" alt="image3"></li>
+	</ul>
+</div>
+</body>
+</html>

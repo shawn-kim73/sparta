@@ -1,0 +1,21 @@
+﻿$(element).each(function(i, ele){
+});
+
+i : 순서입니다.
+ele : 해당 요소입니다.
+
+
+
+$.each(Array, function(i, v){
+});
+
+i : 순서입니다.
+v : 해당 배열자입니다.
+
+
+
+$.each(Object, function(k, v){
+});
+
+k : 속성입니다.
+v : 속성 값입니다.

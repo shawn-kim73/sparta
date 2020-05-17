@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>basic :: jQuery effect</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<style>
+body {
+	margin: 20px;
+	padding: 20px;
+	line-height: 1;
+	font-family: "Open Sans", sans-serif;
+	font-size: 1em;
+	background-color: #555;
+	color: #000;
+}
+button {
+	padding: 5px 15px;
+	background-color: #666;
+	color: #000;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+button:hover {
+	background-color: #888;
+}
+a {
+	display: inline-block;
+	margin-bottom: 5px;
+	text-decoration: none;
+	color: #666;
+}
+.title {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+.container {
+	margin-top: 35px;
+}
+.sample_list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sample_list li {
+	margin-top: 30px;
+}
+.sample_list li:first-child {
+	margin-top: 0;
+}
+.sample_list a {
+	display: inline-block;
+	margin-right: 10px;
+	line-height: 31px;
+	font-size: 0.875em;
+	color: #000;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+.sample_list a:hover {
+	color: #8ac007;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+$(function(){
+	$(".start_btn").click(function(){
+		$(this).siblings("div").animate({opacity:0.1, left:"500px"}, 1000)
+		.animate({opacity:0.4, top:0, left:"100px"}, 1000)
+		.slideUp(1000)
+		.slideDown(1000)
+		.animate({left:0}, 1000)
+		.animate({opacity:1}, 2000);
+	});
+
+	$(".stop_btn1").click(function(){
+		$(".box1").stop(true, true);
+	})
+	$(".stop_btn2").click(function(){
+		$(".box2").stop(true, false);
+	})
+	$(".stop_btn3").click(function(){
+		$(".box3").stop(false, true);
+	})
+	$(".stop_btn4").click(function(){
+		$(".box3").stop(); // $(".box4").stop(false, false);
+	})
+});
+</script>
+</head>
+
+<body>
+<h1 class="title">basic :: jQuery effect</h1>
+<div class="container">
+	<ul class="sample_list">
+		<li>
+			<a href="#none" class="start_btn">Animation start</a> <a href="#none" class="stop_btn1">stop(true, true)</a>
+			<div class="box1"><img src="images/zoo0.jpg" alt="zoo0" width="294" height="324"></div>
+		</li>
+		<li>
+			<a href="#none" class="start_btn">Animation start</a> <a href="#none" class="stop_btn2">stop(true, false)</a>
+			<div class="box2"><img src="images/zoo1.jpg" alt="zoo1" width="294" height="324">></div>
+		</li>
+		<li>
+			<a href="#none" class="start_btn">Animation start</a> <a href="#none" class="stop_btn3">stop(false, true)</a>
+			<div class="box3"><img src="images/zoo2.jpg" alt="zoo2" width="294" height="324"></div>
+		</li>
+		<li>
+			<a href="#none" class="start_btn">Animation start</a> <a href="#none" class="stop_btn4">stop(false, false)</a>
+			<div class="box4"><img src="images/zoo3.jpg" alt="zoo3" width="294" height="324"></div>
+		</li>
+	</div>
+</div>
+</body>
+</html>
