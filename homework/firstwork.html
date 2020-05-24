@@ -1,68 +1,97 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- firstwork css -->
-    <link rel="stylesheet" href="firstwork.css">
-    <!-- font css -->
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    <title>꿀판매</title> 
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="text-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSI7mqjeCYk1ELzKW65uTn0GkJK6Apvy-YUdaUoJzGCf4M0er-O&usqp=CAU" class="rounded" alt="...">
-      </div>
-      <div class="txt"> 
-        <h1>꿀을 판매합니다.</h1>
-        <h5>가격 20000/개</h5>
-          <p>이 제품은 뉴질랜드에서 직접수입을 해서 판매하는 
-          상품이므로 안전과 가격면에서 탁월한 제품입니다.<br>
-          여성의 피부와 노인들의 고혈압 건강에 최고의 제품임을 알려드립니다.
-          <p>
-      </div>
-      
-      <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">주문자이름</span>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뉴질랜드 꿀판매</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="firstwork.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function q1() {
+      let value1 = $("#name").val();
+      let value2 = $("#inputGroupSelect01").val();
+      let value3 = $("#address").val();
+      let value4 = $("#callnumber").val();
+      if (value1 == "" || value3 == "" || value4 == "") {
+        alert("입력값을 입력하세요");
+      }
+      else if (value2 == "--수량을 선택하세요--") {
+        alert("수량을 선택하세요");
+      }
+    }
+    $(document).ready(function () {
+      $('#dolar').empty();
+      $.ajax({
+        type: "GET",
+        url: "https://api.manana.kr/exchange/rate.json",
+        data: {},
+        success: function (response) {
+          let rate = response[1]["rate"];
+          let temp_html = `달러-원환율:${rate}`                
+          $("#dolar").append(temp_html);
+        }
+      })
+    });
+  </script>
+</head>
+
+<body>
+  <div>
+    <p>
+      <img src="https://faster.kr/wp-content/uploads/2019/02/1.jpg" alt="">
+    </p>
+    <p id="dolar"></p>
+    <table>
+      <tr>
+        <td>
+          <h3>꿀을판매합니다.</h3>
+        </td>
+        <td>20000/1개</td>
+      </tr>
+    </table>
+    <p class="intoduce-1">이 제품은 뉴질랜드에서 직접수입을 해서 판매하는
+      상품이므로 안전과 가격면에서 탁월합니다.</p>
+    <p class="intoduce-1">여성의 피부와 노인들의 고혈압 건강에 최고의 제품임을 알려드립니다.</p>
+
+    <form action="#" method="get">
+      <div class="mx-auto input-group">
+        <div class="class= input-group-prepend">
+          <label class="input-group-text" for="name">주문자이름</label>
         </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <input type="text" id="name" class="form-control">
       </div>
-      <div class="input-group mb-3">
+      <div class="mx-auto input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">수량</label>
         </div>
         <select class="custom-select" id="inputGroupSelect01">
           <option selected>--수량을 선택하세요--</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
         </select>
       </div>
-      <div class="input-group input-group-sm mb-3">
+      <div class="mx-auto input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">주소</span>
+          <label class="input-group-text" for="address">주소</label>
         </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <input type="text" id="address" class="form-control">
       </div>
-      <div class="input-group input-group-sm mb-3">
+      <div class="mx-auto input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+          <label class="input-group-text" for="callnumber">전화번호</label>
         </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <input type="text" id="callnumber" class="form-control">
       </div>
-    </div>
-    <div class="footer">
-      <button type="button" class="btn btn-primary">주문하기</button>
-    </div>     
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
-</html> 
+      <div id="btn">
+        <input onclick="q1()" class="btn btn-primary" type="submit" value="주문하기">
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
