@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뉴질랜드 꿀판매</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='firstwork.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function q1() {
+      let name = $("#name").val();
+      let inputGroupSelect01p = $("#inputGroupSelect01").val();
+      let address = $("#address").val();
+      let callnumber = $("#callnumber").val();
+      if (name == "" || address == "" || callnumber == "") {
+        alert("입력값을 입력하세요");
+      }
+      else if (inputGroupSelect01p == "--수량을 선택하세요--") {
+        alert("수량을 선택하세요");
+      }
+      $.ajax({
+        type: "POST",
+        url: "/honeysells",
+        data: {
+          'name_give': name, 'inputGroupSelect01_give': inputGroupSelect01p,
+          'address_give': address, 'callnumber_give': callnumber
+        },
+        success: function (response) {
+          if (response['result'] == 'success') {
+            alert(response['msg']);
+            window.location.reload();
+          }
+        }
+      })
+    }
+
+    $(document).ready(function () {
+      $('#dolar').empty();
+      $.ajax({
+        type: "GET",
+        url: "https://api.manana.kr/exchange/rate.json",
+        data: {},
+        success: function (response) {
+          let rate = response[1]["rate"];
+          let temp_html = `달러-원환율:${rate}`
+          $("#dolar").append(temp_html);
+        }
+      })
+
+
+    }
+    )
+    $('#orders_box').empty();
+    $.ajax({
+      type: "GET",
+      url: "/honeysells",
+      data: {},
+      success: function (response) {
+        if (response['result'] == 'success') {
+          let honeysells = response['honeysells'];
+          for (let i = 0; i < honeysells.length; i++) {
+            let name = honeysells[i]['name']
+            let quantity = honeysells[i]['quantity']
+            let address = honeysells[i]['address']
+            let callneumber = honeysells[i]['callnumber']
+            let temp_html =
+              `<tr>
+                <td>${name}</td>
+                <td>${quantity}</td>
+                <td>${address}</td>
+                   <td>${callneumber}</td>
+              </tr>`;
+            $('#orders_box').append(temp_html);
+          }
+        } else {
+          alert('꿀판매를 받아오지 못했습니다');
+        }
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div>
+    <p>
+      <img src="https://faster.kr/wp-content/uploads/2019/02/1.jpg" alt="">
+    </p>
+    <p id="dolar"></p>
+    <table id="number">
+      <tr>
+        <td>
+          <h3>꿀을판매합니다.</h3>
+        </td>
+        <td>20000/1개</td>
+      </tr>
+    </table>
+    <p class="intoduce-1">이 제품은 뉴질랜드에서 직접수입을 해서 판매하는
+      상품이므로 안전과 가격면에서 탁월합니다.</p>
+    <p class="intoduce-1">여성의 피부와 노인들의 고혈압 건강에 최고의 제품임을 알려드립니다.</p>
+
+    <form action="#" method="get">
+      <div class="mx-auto input-group">
+        <div class="class= input-group-prepend">
+          <label class="input-group-text" for="name">주문자이름</label>
+        </div>
+        <input type="text" id="name" class="form-control">
+      </div>
+      <div class="mx-auto input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">수량</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>--수량을 선택하세요--</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="mx-auto input-group">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="address">주소</label>
+        </div>
+        <input type="text" id="address" class="form-control">
+      </div>
+      <div class="mx-auto input-group">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="callnumber">전화번호</label>
+        </div>
+        <input type="text" id="callnumber" class="form-control">
+      </div>
+      <div id="btn">
+        <input onclick="q1()" class="btn btn-primary" type="submit" value="주문하기">
+      </div>
+    </form>
+  </div><br>
+  <div >
+    <table id="mar" class="table w-50 mx-auto" >
+      <thead>
+        <tr>
+          <th scope="col">이름</th>
+          <th scope="col">수량</th>
+          <th scope="col">주소</th>
+          <th scope="col">전화번호</th>
+        </tr>
+      </thead>
+      <tbody scope="col" id="orders_box">
+
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

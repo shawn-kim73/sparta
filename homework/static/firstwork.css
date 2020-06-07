@@ -1,0 +1,34 @@
+.input-group {
+  width: 700px;
+  margin-top: 15px;
+}
+img {
+ display: block;
+ margin-top: 5px;
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+}
+ #number {
+ margin-left: 32%;
+ }
+.intoduce-1 {
+ margin-left: 32% ;  
+}
+#btn {  
+ margin-left: 47%;
+ margin-top: 20px;  
+}
+div {
+ font-size: 1.3rem;
+ font-family: 'East Sea Dokdo', cursive;
+}
+#dolar {
+  margin-left: 32%;
+  font-size: 1.5rem;
+  font-family: fantasy;
+}
+
+.mar{
+  margin-top: 15px;
+}
